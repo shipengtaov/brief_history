@@ -1,0 +1,4 @@
+django
+MySQL-python
+lxml
+python-dateutil
