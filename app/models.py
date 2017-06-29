@@ -24,10 +24,10 @@ class Page(models.Model):
         if self.birth_date == self.UNKNOWN_DATE and self.death_date == self.UNKNOWN_DATE:
             return '未知'
         if self.birth_date == self.UNKNOWN_DATE:
-            return '未知~{}'.format(self.death_date)
+            return '未知 ~ {}'.format(self.death_date)
         if self.death_date == self.UNKNOWN_DATE:
-            return '{}~'.format(self.birth_date)
-        return '{}~{}'.format(self.birth_date, self.death_date)
+            return '{} ~ '.format(self.birth_date)
+        return '{} ~ {}'.format(self.birth_date, self.death_date)
 
 
 class Domain(models.Model):
