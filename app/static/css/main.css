@@ -1,0 +1,20 @@
+.body {
+  width: 60%;
+  margin: 0 auto;
+  border: 1px solid gray; }
+
+.domains {
+  border: 1px solid #cdcdcd;
+  padding: 20px; }
+  .domains .domain-item {
+    border-bottom: 1px solid #cdcdcd; }
+    .domains .domain-item.current {
+      color: green; }
+
+.pages {
+  border: 1px solid #cdcdcd;
+  padding: 20px; }
+  .pages .page-item .page-field {
+    margin-bottom: 5px; }
+
+/*# sourceMappingURL=main.css.map */

@@ -51,6 +51,8 @@ class Command(BaseCommand):
             if ':' in title:
                 continue
             text = element.xpath('.//*[contains(name(), "text")]')[0].text
+            if not text:
+                continue
 
             if not any([i in text for i in keywords]):
                 continue
@@ -67,9 +69,10 @@ class Command(BaseCommand):
             page, created = Page.objects.get_or_create(title=title)
             page.url = url
             if birth_date:
-                page.birth_date = birth_date.strftime('%Y-%m-%d')
+                page.birth_date = birth_date.isoformat()
+                page.has_birth_date = True
             if death_date:
-                page.death_date = death_date.strftime('%Y-%m-%d')
+                page.death_date = death_date.isoformat()
             page.save()
 
             relation, created = PageDomain.objects.get_or_create(domain=domain, page=page)

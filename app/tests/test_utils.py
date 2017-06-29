@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from datetime import date
 from django.test import TestCase
 
-from . import utils
+from .. import utils
 
 
 class UtilsTest(TestCase):

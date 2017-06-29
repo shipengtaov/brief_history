@@ -1,11 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{firstof title "Brief History"}}</title>
+	<title>{% firstof title "Brief History" %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 	{% block head %}{% endblock %}
 </head>
 <body>
-	{% block body %}
-	{% endblock %}
+	<div class="container body">
+		<div class="col-md-4 domains">
+		<div class="domain-item">
+			<a href="/">所有</a>
+		</div>
+			{% for domain in domains %}
+			<div class="domain-item">
+				<a href="{{domain.get_absolute_url}}">{{domain.name}}</a>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col-md-8 pages">
+			{% block pages %}
+			{% endblock %}
+		</div>
+	</div>
 </body>
 </html>

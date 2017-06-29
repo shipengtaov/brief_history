@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block pages %}
+{% for page in pages %}
+<div class="page-item">
+		<div class="row">
+		<div class="col-md-6 page-field">
+			<a href="{{page.url}}" target="_blank">
+				{{page.title}}
+			</a>
+		</div>
+		<div class="col-md-6 page-field">
+			{{page.birth_death_date}}
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
