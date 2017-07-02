@@ -19,8 +19,186 @@ class UtilsTest(TestCase):
             ("test", False),
             ("""{{Infobox Person
                 name = test
-                birth_date = {{birth date and age|2017|6|27}}
                 }}""", True),
+            ("""{{Infobox_Person
+                name = test
+                }}""", True),
+            ("""{{Infobox Scientist
+                }}""", True),
+            ("""{{Infobox_Scientist
+                name = test
+                }}""", True),
+            ("""{{Infobox Dalai Lama
+                name = test
+                }}""", True),
+            ("""{{InfoboxDalaiLama
+                name = test
+                }}""", True),
+            ("""{{Infobox Christian leader
+                }}""", True),
+            ("""{{Infobox_Christianleader
+                }}""", True),
+            ("""{{Infobox Hindu leader
+                }}""", True),
+            ("""{{Infobox_Hindu_leader
+                }}""", True),
+            ("""{{Infobox Jewish leader
+                }}""", True),
+            ("""{{Infobox_Jewish_leader
+                }}""", True),
+            ("""{{Infobox Muslim leader
+                }}""", True),
+            ("""{{Infobox_Muslim_leader
+                }}""", True),
+            ("""{{Infobox Latter Day Saint biography
+                }}""", True),
+            ("""{{Infobox_Latter_DaySaint  biography
+                }}""", True),
+            ("""{{Infobox rebbe
+                }}""", True),
+            ("""{{Infobox_rebbe
+                }}""", True),
+            ("""{{Infobox religious biography
+                }}""", True),
+            ("""{{Infobox_religious_biography
+                }}""", True),
+            ("""{{Infobox saint
+                }}""", True),
+            ("""{{Infobox_saint
+                }}""", True),
+            ("""{{Infobox college football player
+                }}""", True),            
+            ("""{{Infobox CFL biography
+                }}""", True),
+            ("""{{Infobox NFL biography
+                }}""", True),
+            ("""{{Infobox baseball biography
+                }}""", True),
+            ("""{{Infobox MLB umpire
+                }}""", True),
+            ("""{{Infobox basketball biography
+                }}""", True),
+            ("""{{Infobox basketball official
+                }}""", True),
+            ("""{{Infobox Champ Car driver
+                }}""", True),
+            ("""{{Infobox F1 driver
+                }}""", True),
+            ("""{{Infobox Le Mans driver
+                }}""", True),
+            ("""{{Infobox Motocross rider
+                }}""", True),
+            ("""{{Infobox motorcycle rider
+                }}""", True),
+            ("""{{Infobox NASCAR driver
+                }}""", True),
+            ("""{{Infobox racing driver
+                }}""", True),
+            ("""{{Infobox racing driver series section
+                }}""", True),
+            ("""{{Infobox speedway rider
+                }}""", True),
+            ("""{{Infobox WRC driver
+                }}""", True),
+            ("{{Infobox sportsperson}}", True),
+            ("{{Infobox biathlete}}", True),
+            ("{{Infobox boxer (amateur)}}", True),
+            ("{{Infobox speed skater}}", True),
+            ("{{Infobox sailor}}", True),
+            ("{{Infobox sport wrestler}}", True),
+            ("{{Infobox swimmer}}", True),
+            ("{{Infobox AFL biography}}", True),
+            ("{{Infobox alpine ski racer}}", True),
+            ("{{Infobox amateur wrestler}}", True),
+            ("{{Infobox badminton player}}", True),
+            ("{{Infobox bandy biography}}", True),
+            ("{{Infobox bodybuilder}}", True),
+            ("{{Infobox boxer}}", True),
+            ("{{Infobox climber}}", True),
+            ("{{Infobox cricketer}}", True),
+            ("{{Infobox curler}}", True),
+            ("{{Infobox cyclist}}", True),
+            ("{{Infobox equestrian}}", True),
+            ("{{Infobox fencer}}", True),
+            ("{{Infobox field hockey player}}", True),
+            ("{{Infobox figure skater}}", True),
+            ("{{Infobox football biography}}", True),
+            ("{{Infobox football official}}", True),
+            ("{{Infobox GAA player}}", True),
+            ("{{Infobox golfer}}", True),
+            ("{{Infobox gymnast}}", True),
+            ("{{Infobox handball biography}}", True),
+            ("{{Infobox horseracing personality}}", True),
+            ("{{Infobox ice hockey player}}", True),
+            ("{{Infobox lacrosse player}}", True),
+            ("{{Infobox martial artist}}", True),
+            ("{{Infobox mountaineer}}", True),
+            ("{{Infobox NCAA athlete}}", True),
+            ("{{Infobox netball biography}}", True),
+            ("{{Infobox NHL coach}}", True),
+            ("{{Infobox pelotari}}", True),
+            ("{{Infobox professional bowler}}", True),
+            ("{{Infobox professional wrestler}}", True),
+            ("{{Infobox rugby biography}}", True),
+            ("{{Infobox rugby league biography}}", True),
+            ("{{Infobox skier}}", True),
+            # ("{{Infobox sports announcer details}}", True),
+            ("{{Infobox squash player}}", True),
+            ("{{Infobox sumo wrestler}}", True),
+            ("{{Infobox surfer}}", True),
+            ("{{Infobox table tennis player}}", True),
+            ("{{Infobox tennis biography}}", True),
+            ("{{Infobox volleyball biography}}", True),
+            ("{{Infobox academic}}", True),
+            ("{{Infobox adult biography}}", True),
+            ("{{Infobox architect}}", True),
+            ("{{Infobox clergy}}", True),
+            ("{{Infobox dancer}}", True),
+            ("{{Infobox fashion designer}}", True),
+            ("{{Infobox medical person}}", True),
+            ("{{Infobox Native American leader}}", True),
+            ("{{Infobox sports announcer}}", True),
+            ("{{Infobox theologian}}", True),
+            ("{{Infobox artist}}", True),
+            ("{{Infobox astronaut}}", True),
+            ("{{Infobox aviator}}", True),
+            ("{{Infobox chef}}", True),
+            ("{{Infobox chess biography}}", True),
+            ("{{Infobox Chinese historical biography}}", True),
+            ("{{Infobox Chinese-language singer and actor}}", True),
+            ("{{Infobox classical composer}}", True),
+            ("{{Infobox college coach}}", True),
+            ("{{Infobox comedian}}", True),
+            ("{{Infobox comics creator}}", True),
+            ("{{Infobox criminal}}", True),
+            ("{{Infobox darts player}}", True),
+            ("{{Infobox economist}}", True),
+            ("{{Infobox engineer}}", True),
+            ("{{Infobox FBI Ten Most Wanted}}", True),
+            ("{{Infobox go player}}", True),
+            ("{{Infobox gunpowder plotter}}", True),
+            ("{{Infobox Magic: The Gathering player}}", True),
+            ("{{Infobox member of the Knesset}}", True),
+            ("{{Infobox military person}}", True),
+            ("{{Infobox model}}", True),
+            ("{{Infobox musical artist}}", True),
+            ("{{Infobox Nahua officeholder}}", True),
+            ("{{Infobox officeholder}}", True),
+            ("{{Infobox pageant titleholder}}", True),
+            ("{{Infobox philosopher}}", True),
+            ("{{Infobox pirate}}", True),
+            ("{{Infobox Playboy Playmate}}", True),
+            ("{{Infobox playwright}}", True),
+            ("{{Infobox poker player}}", True),
+            ("{{Infobox police officer}}", True),
+            ("{{Infobox presenter}}", True),
+            ("{{Infobox eSports player}}", True),
+            ("{{Infobox Pro Gaming player}}", True),
+            ("{{Infobox snooker player}}", True),
+            ("{{Infobox spy}}", True),
+            ("{{Infobox War on Terror detainee}}", True),
+            ("{{Infobox writer}}", True),
+            ("{{Infobox YouTube personality}}", True),
         ]
         for input, expected in cases:
             self.assertEqual(expected, utils.is_wiki_about_person(input))
@@ -101,6 +279,10 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 birth_date = 1957年6月27日
                 }}""", (date(1957, 6, 27), None)),
+
+            # ("""{{Infobox Person
+            #     birth_date = 2 Jul, 2017
+            #     }}""", (date(2017, 7, 2), None)),
 
             # death date and age
             ("""{{Infobox Person
