@@ -10,11 +10,11 @@
 <body>
 	<div class="container body">
 		<div class="col-md-4 domains">
-		<div class="domain-item">
-			<a href="/">所有</a>
-		</div>
+			<div class="domain-item{% if not current_domain %} current {% endif %}">
+				<a href="/">所有</a>
+			</div>
 			{% for domain in domains %}
-			<div class="domain-item">
+			<div class="domain-item{% if current_domain.id == domain.id %} current {% endif %}" style="margin-left: 10px;">
 				<a href="{{domain.get_absolute_url}}">{{domain.name}}</a>
 			</div>
 			{% endfor %}

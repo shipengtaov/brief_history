@@ -17,6 +17,9 @@ class Page(models.Model):
     has_birth_date = models.BooleanField(default=False)
     text = models.TextField()
 
+    class Meta:
+        ordering = ['-has_birth_date', 'birth_date']
+
     def __str__(self):
         return '<Page {}>'.format(self.title)
 
@@ -41,6 +44,9 @@ class Domain(models.Model):
 
     def get_absolute_url(self):
         return reverse('domain', kwargs=dict(domain_id=self.pk))
+
+    def get_keywords(self):
+        return self.keywords.split('|')
 
 
 class PageDomain(models.Model):

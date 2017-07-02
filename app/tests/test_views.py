@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 import re
+from unittest import skip
 from django.test import TestCase
 from django.shortcuts import reverse
 from ..models import Page, Domain, PageDomain
@@ -42,9 +43,6 @@ class ViewsTest(TestCase):
         self.assertIn(page2.url, resp.text)
         self.assertIn(page2.birth_date, resp.text)
 
-    def test_pages_sorted_by_birth_date(self):
-        pass
-
     def test_domain_page_ok(self):
         domain = Domain(name='测试领域', keywords='关键字1|关键字2')
         domain.save()
@@ -67,5 +65,11 @@ class ViewsTest(TestCase):
         self.assertIn(domain.get_absolute_url(), resp.text)
         self.assertRegexpMatches(resp.text.replace('\n', ''), r'<body>.*?{}.*?</body>'.format(domain.name))
 
-    def test_domain_page_current_domain(self):
-        pass
+    def test_domain_page_has_keywords(self):
+        domain = Domain(name='测试领域', keywords='关键字1|关键字2')
+        domain.save()
+        resp = self.client.get(reverse('domain', kwargs=dict(domain_id=domain.id)))
+        resp.text = resp.content.decode('utf-8')
+        self.assertIn('关键字1', resp.text)
+        self.assertIn('关键字2', resp.text)
+        

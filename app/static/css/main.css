@@ -2,6 +2,8 @@
   width: 60%;
   margin: 0 auto;
   border: 1px solid gray; }
+  .body a {
+    color: #0366d6; }
 
 .domains {
   border: 1px solid #cdcdcd;
@@ -10,11 +12,36 @@
     border-bottom: 1px solid #cdcdcd; }
     .domains .domain-item.current {
       color: green; }
+  .domains .current a {
+    color: #24292e; }
 
 .pages {
   border: 1px solid #cdcdcd;
   padding: 20px; }
+  .pages .keywords {
+    margin-bottom: 10px;
+    overflow: hidden; }
+    .pages .keywords .keyword {
+      float: left;
+      display: inline-block;
+      border: 1px solid #cdcdcd;
+      border-radius: 5px;
+      padding: 5px;
+      margin-top: 5px;
+      margin-right: 5px; }
+      .pages .keywords .keyword:last-child {
+        margin-right: 0; }
   .pages .page-item .page-field {
     margin-bottom: 5px; }
+
+#pagination {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+  #pagination .disabled {
+    color: #9a9a9a; }
+  #pagination .current {
+    text-decoration: underline;
+    font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */

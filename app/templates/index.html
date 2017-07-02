@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block pages %}
-{% for page in pages %}
+<div class="keywords">
+	{% for keyword in current_domain.get_keywords %}
+	<div class="keyword">{{keyword}}</div>
+	{% endfor %}
+</div>
+{% for page in pages.object_list %}
 <div class="page-item">
 		<div class="row">
 		<div class="col-md-6 page-field">
@@ -15,4 +20,29 @@
 	</div>
 </div>
 {% endfor %}
+<div id="pagination">
+<div class="pagination">
+    {% if pages.has_previous %}
+        <a href="?{{ pages.previous_page_number.querystring }}" class="prev">上一页</a>
+    {% else %}
+        <span class="disabled prev">上一页</span>
+    {% endif %}
+    {% for page in pages.pages %}
+        {% if page %}
+            {% ifequal page pages.number %}
+                <span class="current page">{{ page }}</span>
+            {% else %}
+                <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+            {% endifequal %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    {% if pages.has_next %}
+        <a href="?{{ pages.next_page_number.querystring }}" class="next">下一页</a>
+    {% else %}
+        <span class="disabled next">下一页</span>
+    {% endif %}
+</div>
+</div>
 {% endblock %}

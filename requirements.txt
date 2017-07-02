@@ -2,3 +2,4 @@ django
 MySQL-python
 lxml
 python-dateutil
+django-pure-pagination

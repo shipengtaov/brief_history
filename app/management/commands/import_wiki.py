@@ -27,7 +27,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         file = options['file']
         domain = force_text(options['domain'])
-        keywords = [force_text(i) for i in options['keywords']]
+        keywords = [force_text(i).lower() for i in options['keywords']]
         lang = options['lang']
         max_count = options['max']
 
