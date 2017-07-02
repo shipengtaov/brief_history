@@ -28,27 +28,27 @@ def get_birth_death_date(text):
     birth_date, death_date = None, None
 
     # birth date and age
-    match = re.search(r'{{birth\s*date and age\|[^\d]*(\d+\|\d+\|\d+)', text, flags=re.I)
+    match = re.search(r'{{\s*birth\s*date and age\s*\|[^\d]*(\d+\|\d+\|\d+)', text, flags=re.I)
     if match:
         # living
         return parse_date(match.group(1).replace('|', '-')), None
 
     # birth date
-    match = re.search(r'{{birth\s*date\|[^\d]*(\d+\|\d+\|\d+)', text, flags=re.I)
+    match = re.search(r'{{\s*birth\s*date\s*\|[^\d]*(\d+\|\d+\|\d+)', text, flags=re.I)
     if match:
         birth_date = parse_date(match.group(1).replace('|', '-'))
 
     # birth year and age
     # see: https://zh.wikipedia.org/wiki/Template:Birth_year_and_age
     if not birth_date:
-        match = re.search(r'{{birth\s*year and age\|[^\d]*(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*birth\s*year and age\s*\|[^\d]*(\d+)', text, flags=re.I)
         if match:
             birth_date = datetime.date(int(match.group(1)), 1, 1)
 
     # birth based on age as of date
     # see: https://zh.wikipedia.org/wiki/Template:Birth_based_on_age_as_of_date
     if not birth_date:
-        match = re.search(r'{{birth based on age as of date\|[^\d]*(\d+)\|(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*birth based on age as of date\s*\|[^\d]*(\d+)\|(\d+)', text, flags=re.I)
         if match:
             birth_date = datetime.date(int(match.group(2))-int(match.group(1)), 1, 1)
 
@@ -60,33 +60,33 @@ def get_birth_death_date(text):
             birth_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
     # death date and age
-    match = re.search(r'{{death\s*date and age\|[^\d]*(\d+\|\d+\|\d+).*?}}', text, flags=re.I)
+    match = re.search(r'{{\s*death\s*date and age\s*\|[^\d]*(\d+\|\d+\|\d+).*?}}', text, flags=re.I)
     if match:
         death_date = parse_date(match.group(1).replace('|', '-'))
 
     # death date
     # see: https://en.wikipedia.org/wiki/Template:Death_date
     if not death_date:
-        match = re.search(r'{{death date\|[^\d]*(\d+)\|(\d+)\|(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*death date\s*\|[^\d]*(\d+)\|(\d+)\|(\d+)', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
     if not death_date:
-        match = re.search(r'{{death date\|[^\d]*(\d+)\|(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*death date\s*\|[^\d]*(\d+)\|(\d+)', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), int(match.group(2)), 1)
     if not death_date:
-        match = re.search(r'{{death date\|[^\d]*(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*death date\s*\|[^\d]*(\d+)', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), 1, 1)
 
     # death year and age
     # see: https://zh.wikipedia.org/wiki/Template:Death_year_and_age
     if not death_date:
-        match = re.search(r'{{death\s*year and age\|[^\d]*(\d+)\|\d+\|(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*death\s*year and age\s*\|[^\d]*(\d+)\|\d+\|(\d+)', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), int(match.group(2)), 1)
         else:
-            match = re.search(r'{{death\s*year and age\|[^\d]*(\d+)', text, flags=re.I)
+            match = re.search(r'{{\s*death\s*year and age\s*\|[^\d]*(\d+)', text, flags=re.I)
             if match:
                 death_date = datetime.date(int(match.group(1)), 1, 1)
 
