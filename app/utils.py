@@ -25,6 +25,28 @@ def is_wiki_about_person(text):
 
 
 def get_birth_death_date(text):
+    def filter_date(string):
+        """
+        # {{birth based on age as of date|mos=1|25|2009|02|03}}
+        # from: https://zh.wikipedia.org/wiki/%E5%86%B0%E8%9B%99
+        >>> filter_date("|mos=1|25|2009|02|03")
+        ['25', '2009', '02', '03']
+        """
+        result = []
+        for i in string.strip('|').split('|'):
+            i = i.strip()
+            if not i:
+                continue
+            if '=' in i:
+                continue
+            result.append(i)
+        return result
+    # def get_date_from_text(pattern, text, callback):
+    #     match = re.search(pattern, text, flags=re.I)
+    #     if not match:
+    #         return None
+        # return callback()
+
     birth_date, death_date = None, None
 
     # birth date and age
@@ -48,9 +70,11 @@ def get_birth_death_date(text):
     # birth based on age as of date
     # see: https://zh.wikipedia.org/wiki/Template:Birth_based_on_age_as_of_date
     if not birth_date:
-        match = re.search(r'{{\s*birth based on age as of date\s*\|[^\d]*(\d+)\|(\d+)', text, flags=re.I)
+        match = re.search(r'{{\s*birth based on age as of date\s*\|(.*?)}}', text, flags=re.I)
         if match:
-            birth_date = datetime.date(int(match.group(2))-int(match.group(1)), 1, 1)
+            splitted = filter_date(match.group(1))
+            if splitted:
+                birth_date = datetime.date(int(splitted[1]) - int(splitted[0]), 1, 1)
 
     # birth_date  = 1957年6月27日
     # example: https://zh.wikipedia.org/wiki/%E7%9B%96%E5%B0%94%C2%B7%E4%BC%8A%E7%93%A6%E5%B0%94%E7%BB%A5

@@ -94,6 +94,9 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 birth_date = {{ Birth based on age as of date |50|2000|3|3}}
                 }}""", (date(1950, 1, 1), None)),
+            ("""{{Infobox Person
+                birth_date = {{birth based on age as of date|mos=1|25|2009|02|03}}
+                }}""", (date(1984, 1, 1), None)),
 
             ("""{{Infobox Person
                 birth_date = 1957年6月27日
