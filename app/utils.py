@@ -260,8 +260,9 @@ def get_birth_death_date(text):
             birth_date = datetime.date(int(match.group(1)), 1, 1)
 
     # 3 Jul, 2017
+    # 28 August 1919
     if not birth_date:
-        match = re.search(r'birth_date\s*=\s*(\d+\s*\w+\s*,\s*\d+)', text, flags=re.I)
+        match = re.search(r'birth_date\s*=\s*(\d+\s*\w+\s*,?\s*\d+)', text, flags=re.I)
         if match:
             birth_date = parse_date(match.group(1))
 
@@ -313,8 +314,9 @@ def get_birth_death_date(text):
             death_date = datetime.date(int(match.group(1)), 1, 1)
 
     # 2 Feb, 1900
+    # 28 August 1919
     if not death_date:
-        match = re.search(r'death_date\s*=\s*(\d+\s*\w+\s*,\s*\d+)', text, flags=re.I)
+        match = re.search(r'death_date\s*=\s*(\d+\s*\w+\s*,?\s*\d+)', text, flags=re.I)
         if match:
             death_date = parse_date(match.group(1))
 

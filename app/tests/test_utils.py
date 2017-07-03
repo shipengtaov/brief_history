@@ -326,6 +326,9 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 birth_date = 3 Jul, 2017
                 }}""", (date(2017, 7, 3), None)),
+            ("""{{Infobox Person
+                birth_date = 28 August 1919
+                }}""", (date(1919, 8, 28), None)),
 
             # death date and age
             ("""{{Infobox Person
@@ -467,6 +470,9 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 death_date = 2 Feb, 1900
                 }}""", (None, date(1900, 2, 2))),
+            ("""{{Infobox Person
+                death_date = 28 August 1919
+                }}""", (None, date(1919, 8, 28))),
 
             ("""{{Infobox_Scientist 
                 |name = -{zh-hans:克劳德·艾尔伍德·香农; zh-hant:克勞德·夏農}-
