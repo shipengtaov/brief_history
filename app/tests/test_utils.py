@@ -314,6 +314,16 @@ class UtilsTest(TestCase):
                 }}""", (date(1957, 1, 1), None)),
 
             ("""{{Infobox Person
+                born = 1957年6月27日
+                }}""", (date(1957, 6, 27), None)),
+            ("""{{Infobox Person
+                born = 1957年6月
+                }}""", (date(1957, 6, 1), None)),
+            ("""{{Infobox Person
+                born = 1957年
+                }}""", (date(1957, 1, 1), None)),
+
+            ("""{{Infobox Person
                 birth_date = 3 Jul, 2017
                 }}""", (date(2017, 7, 3), None)),
 

@@ -245,17 +245,17 @@ def get_birth_death_date(text):
     # birth_date  = 1957年6月27日
     # example: https://zh.wikipedia.org/wiki/%E7%9B%96%E5%B0%94%C2%B7%E4%BC%8A%E7%93%A6%E5%B0%94%E7%BB%A5
     if not birth_date:
-        match = re.search(r'birth_date\s*=\s*(\d+)年(\d+)月(\d+)日', text, flags=re.I)
+        match = re.search(r'(?:birth_date|born)\s*=\s*(\d+)年(\d+)月(\d+)日', text, flags=re.I)
         if match:
             birth_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
     # birth_date = xxx年yyy月
     if not birth_date:
-        match = re.search(r'birth_date\s*=\s*(\d+)年(\d+)月', text, flags=re.I)
+        match = re.search(r'(?:birth_date|born)\s*=\s*(\d+)年(\d+)月', text, flags=re.I)
         if match:
             birth_date = datetime.date(int(match.group(1)), int(match.group(2)), 1)
     # birth_date = xxx年
     if not birth_date:
-        match = re.search(r'birth_date\s*=\s*(\d+)年', text, flags=re.I)
+        match = re.search(r'(?:birth_date|born)\s*=\s*(\d+)年', text, flags=re.I)
         if match:
             birth_date = datetime.date(int(match.group(1)), 1, 1)
 
