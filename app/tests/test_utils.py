@@ -210,6 +210,11 @@ class UtilsTest(TestCase):
             # birth date and age
             ("""{{Infobox Person
                 name = test
+                birth_date = {{birth date and age|}}
+                test = 2017|7|3
+                }}""", (None, None)),
+            ("""{{Infobox Person
+                name = test
                 birth_date = {{birth date and age|2017|6|27}}
                 }}""", (date(2017, 6, 27), None)),
             ("""{{Infobox Person
@@ -232,6 +237,11 @@ class UtilsTest(TestCase):
             # birth date
             ("""{{Infobox Person
                 name = test
+                birth_date = {{birth date|}}
+                test = 2017|7|3
+                }}""", (None, None)),
+            ("""{{Infobox Person
+                name = test
                 birth_date = {{birth date|1500|2|3}}
                 }}""", (date(1500, 2, 3), None)),
             ("""{{Infobox Person
@@ -248,6 +258,11 @@ class UtilsTest(TestCase):
                 }}""", (date(1500, 2, 3), None)),
 
             # birth year and age
+            ("""{{Infobox Person
+                name = test
+                birth_date = {{birth year and age|}}
+                test = 2017|7|3
+                }}""", (None, None)),
             ("""{{Infobox Person
                 name = test
                 birth_date = {{birth year and age|2017}}
@@ -287,6 +302,10 @@ class UtilsTest(TestCase):
             # death date and age
             ("""{{Infobox Person
                 name = test
+                death_date = {{Death date and age|}}\ntest = 1000|2|3}}
+                }}""", (None, None)),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{Death date and age|1600|1|2|1500|2|3}}
                 }}""", (None, date(1600, 1, 2))),
             ("""{{Infobox Person
@@ -305,6 +324,11 @@ class UtilsTest(TestCase):
             # death date
             ("""{{Infobox Person
                 name = test
+                death_date = {{Death date|}}
+                test = 1600|2|2
+                }}""", (None, None)),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{Death date|1600|2|2}}
                 }}""", (None, date(1600, 2, 2))),
             ("""{{Infobox Person
@@ -313,12 +337,22 @@ class UtilsTest(TestCase):
                 }}""", (None, date(1600, 2, 2))),
             ("""{{Infobox Person
                 name = test
+                death_date = {{Death date|}}
+                test = 1600|2
+                }}""", (None, None)),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{Death date|1600|2}}
                 }}""", (None, date(1600, 2, 1))),
             ("""{{Infobox Person
                 name = test
                 death_date = {{ Death date |1600|2}}
                 }}""", (None, date(1600, 2, 1))),
+            ("""{{Infobox Person
+                name = test
+                death_date = {{Death date|}}
+                test = 1600
+                }}""", (None, None)),
             ("""{{Infobox Person
                 name = test
                 death_date = {{Death date|1600}}
@@ -331,12 +365,22 @@ class UtilsTest(TestCase):
             # death year and age
             ("""{{Infobox Person
                 name = test
+                death_date = {{death year and age|}}
+                test = 1900|1800|12
+                }}""", (None, None)),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{death year and age|1900|1800|12}}
                 }}""", (None, date(1900, 12, 1))),
             ("""{{Infobox Person
                 name = test
                 death_date = {{ death year and age |1900|1800|12}}
                 }}""", (None, date(1900, 12, 1))),
+            ("""{{Infobox Person
+                name = test
+                death_date = {{death year and age|}}
+                test = 1900|1800
+                }}""", (None, None)),
             ("""{{Infobox Person
                 name = test
                 death_date = {{death year and age|1900|1800}}
