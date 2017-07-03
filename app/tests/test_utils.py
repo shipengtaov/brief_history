@@ -219,6 +219,10 @@ class UtilsTest(TestCase):
                 }}""", (date(2017, 6, 27), None)),
             ("""{{Infobox Person
                 name = test
+                birth_date = {{birth_date and age|2017|6|27}}
+                }}""", (date(2017, 6, 27), None)),
+            ("""{{Infobox Person
+                name = test
                 birth_date = {{ birth date and age |2017|6|27}}
                 }}""", (date(2017, 6, 27), None)),
             ("""{{Infobox Person
@@ -246,6 +250,10 @@ class UtilsTest(TestCase):
                 }}""", (date(1500, 2, 3), None)),
             ("""{{Infobox Person
                 name = test
+                birth_date = {{birth_date|1500|2|3}}
+                }}""", (date(1500, 2, 3), None)),
+            ("""{{Infobox Person
+                name = test
                 birth_date = {{ birth date |1500|2|3}}
                 }}""", (date(1500, 2, 3), None)),
             ("""{{Infobox Person
@@ -266,6 +274,10 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 name = test
                 birth_date = {{birth year and age|2017}}
+                }}""", (date(2017, 1, 1), None)),
+            ("""{{Infobox Person
+                name = test
+                birth_date = {{birth_year and age|2017}}
                 }}""", (date(2017, 1, 1), None)),
             ("""{{Infobox Person
                 name = test
@@ -333,6 +345,10 @@ class UtilsTest(TestCase):
                 }}""", (None, date(1600, 2, 2))),
             ("""{{Infobox Person
                 name = test
+                death_date = {{Death_date|1600|2|2}}
+                }}""", (None, date(1600, 2, 2))),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{ Death date |1600|2|2}}
                 }}""", (None, date(1600, 2, 2))),
             ("""{{Infobox Person
@@ -346,6 +362,10 @@ class UtilsTest(TestCase):
                 }}""", (None, date(1600, 2, 1))),
             ("""{{Infobox Person
                 name = test
+                death_date = {{Death_date|1600|2}}
+                }}""", (None, date(1600, 2, 1))),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{ Death date |1600|2}}
                 }}""", (None, date(1600, 2, 1))),
             ("""{{Infobox Person
@@ -356,6 +376,10 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 name = test
                 death_date = {{Death date|1600}}
+                }}""", (None, date(1600, 1, 1))),
+            ("""{{Infobox Person
+                name = test
+                death_date = {{Death_date|1600}}
                 }}""", (None, date(1600, 1, 1))),
             ("""{{Infobox Person
                 name = test
@@ -374,6 +398,10 @@ class UtilsTest(TestCase):
                 }}""", (None, date(1900, 12, 1))),
             ("""{{Infobox Person
                 name = test
+                death_date = {{death_year and age|1900|1800|12}}
+                }}""", (None, date(1900, 12, 1))),
+            ("""{{Infobox Person
+                name = test
                 death_date = {{ death year and age |1900|1800|12}}
                 }}""", (None, date(1900, 12, 1))),
             ("""{{Infobox Person
@@ -384,6 +412,10 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 name = test
                 death_date = {{death year and age|1900|1800}}
+                }}""", (None, date(1900, 1, 1))),
+            ("""{{Infobox Person
+                name = test
+                death_date = {{death_year and age|1900|1800}}
                 }}""", (None, date(1900, 1, 1))),
             ("""{{Infobox Person
                 name = test
