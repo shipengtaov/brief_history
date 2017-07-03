@@ -1,5 +1,5 @@
-django
-MySQL-python
-lxml
-python-dateutil
-django-pure-pagination
+django==1.11.2
+MySQL-python==1.2.5
+lxml==3.8.0
+python-dateutil==2.6.0
+django-pure-pagination==0.3.0
