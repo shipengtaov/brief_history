@@ -63,7 +63,9 @@ class ViewsTest(TestCase):
         resp = self.client.get(reverse('domain', kwargs=dict(domain_id=domain.id)))
         resp.text = resp.content.decode('utf-8')
         self.assertIn(domain.get_absolute_url(), resp.text)
-        self.assertRegexpMatches(resp.text.replace('\n', ''), r'<body>.*?{}.*?</body>'.format(domain.name))
+        self.assertRegexpMatches(
+            resp.text,
+            re.compile(r'<body>.*?{}.*?</body>'.format(domain.name), re.I|re.DOTALL))
 
     def test_domain_page_has_keywords(self):
         domain = Domain(name='测试领域', keywords='关键字1|关键字2')
