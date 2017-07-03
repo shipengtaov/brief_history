@@ -295,9 +295,9 @@ class UtilsTest(TestCase):
                 birth_date = 1957年6月27日
                 }}""", (date(1957, 6, 27), None)),
 
-            # ("""{{Infobox Person
-            #     birth_date = 2 Jul, 2017
-            #     }}""", (date(2017, 7, 2), None)),
+            ("""{{Infobox Person
+                birth_date = 3 Jul, 2017
+                }}""", (date(2017, 7, 3), None)),
 
             # death date and age
             ("""{{Infobox Person
@@ -408,6 +408,10 @@ class UtilsTest(TestCase):
 
             ("""{{Infobox Person
                 death_date = 1900年2月2日
+                }}""", (None, date(1900, 2, 2))),
+
+            ("""{{Infobox Person
+                death_date = 2 Feb, 1900
                 }}""", (None, date(1900, 2, 2))),
 
             ("""{{Infobox_Scientist 

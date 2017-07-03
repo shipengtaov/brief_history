@@ -249,6 +249,12 @@ def get_birth_death_date(text):
         if match:
             birth_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
+    # 3 Jul, 2017
+    if not birth_date:
+        match = re.search(r'birth_date\s*=\s*(\d+\s*\w+\s*,\s*\d+)', text, flags=re.I)
+        if match:
+            birth_date = parse_date(match.group(1))
+
     # death date and age
     match = re.search(r'{{\s*death\s*date and age\s*\|[^\d\}]*(\d+\|\d+\|\d+).*?}}', text, flags=re.I)
     if match:
@@ -284,6 +290,12 @@ def get_birth_death_date(text):
         match = re.search(r'death_date\s*=\s*(\d+)年(\d+)月(\d+)日', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+
+    # 3 Jul, 2017
+    if not death_date:
+        match = re.search(r'death_date\s*=\s*(\d+\s*\w+\s*,\s*\d+)', text, flags=re.I)
+        if match:
+            death_date = parse_date(match.group(1))
 
     # BirthDeathAge
     # https://zh.wikipedia.org/w/index.php?title=%E5%85%8B%E5%8A%B3%E5%BE%B7%C2%B7%E9%A6%99%E5%86%9C
