@@ -409,6 +409,25 @@ class UtilsTest(TestCase):
             ("""{{Infobox Person
                 death_date = 1900年2月2日
                 }}""", (None, date(1900, 2, 2))),
+
+            ("""{{Infobox_Scientist 
+                |name = -{zh-hans:克劳德·艾尔伍德·香农; zh-hant:克勞德·夏農}-
+                |image = ClaudeShannon MFO3807.jpg
+                |birth_date = {{BirthDeathAge|B|1916|4|30|}}
+                |birth_place = [[密西根州]][[佩托斯基]] 
+                |death_place = [[麻省]][[梅得福鎮]]
+                |nationality = {{USA}}
+                """, (date(1916, 4, 30), None)),
+
+            ("""{{Infobox_Scientist 
+                |name = -{zh-hans:克劳德·艾尔伍德·香农; zh-hant:克勞德·夏農}-
+                |image = ClaudeShannon MFO3807.jpg
+                |birth_date = {{BirthDeathAge|B|1916|4|30|2001|2|24|}}
+                |birth_place = [[密西根州]][[佩托斯基]] 
+                |death_date = {{BirthDeathAge||1916|4|30|2001|2|24|}}
+                |death_place = [[麻省]][[梅得福鎮]]
+                |nationality = {{USA}}
+                """, (date(1916, 4, 30), date(2001, 2, 24))),
         ]
         for input, expected in cases:
             self.assertEqual(expected, utils.get_birth_death_date(input))

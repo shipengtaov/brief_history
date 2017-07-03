@@ -204,11 +204,14 @@ def get_birth_death_date(text):
                 continue
             result.append(i)
         return result
-    # def get_date_from_text(pattern, text, callback):
-    #     match = re.search(pattern, text, flags=re.I)
-    #     if not match:
-    #         return None
-        # return callback()
+    def get_date_list_from_pattern(pattern, text, filter_func=None):
+        match = re.search(pattern, text, flags=re.I)
+        if not match:
+            return None
+        date_list = filter_date(match.group(1))
+        if filter_func:
+            return [i for i in date_list if filter_func(i)]
+        return date_list
 
     birth_date, death_date = None, None
 
@@ -281,6 +284,21 @@ def get_birth_death_date(text):
         match = re.search(r'death_date\s*=\s*(\d+)年(\d+)月(\d+)日', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+
+    # BirthDeathAge
+    # https://zh.wikipedia.org/w/index.php?title=%E5%85%8B%E5%8A%B3%E5%BE%B7%C2%B7%E9%A6%99%E5%86%9C
+    # {{BirthDeathAge|B|1916|4|30|2001|2|24|}}
+    # {{BirthDeathAge||1916|4|30|2001|2|24|}}
+    if not birth_date or death_date:
+        date_list = get_date_list_from_pattern(
+            r'BirthDeathAge[^\d\}]*(.*?)}}',
+            text,
+            filter_func=lambda x:x.isdigit())
+        if date_list:
+            if len(date_list) >= 3:
+                birth_date = datetime.date(int(date_list[0]), int(date_list[1]), int(date_list[2]))
+            if len(date_list) >= 6:
+                death_date = datetime.date(int(date_list[3]), int(date_list[4]), int(date_list[5]))
 
     return birth_date, death_date
 
