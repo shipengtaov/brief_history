@@ -248,6 +248,16 @@ def get_birth_death_date(text):
         match = re.search(r'birth_date\s*=\s*(\d+)年(\d+)月(\d+)日', text, flags=re.I)
         if match:
             birth_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+    # birth_date = xxx年yyy月
+    if not birth_date:
+        match = re.search(r'birth_date\s*=\s*(\d+)年(\d+)月', text, flags=re.I)
+        if match:
+            birth_date = datetime.date(int(match.group(1)), int(match.group(2)), 1)
+    # birth_date = xxx年
+    if not birth_date:
+        match = re.search(r'birth_date\s*=\s*(\d+)年', text, flags=re.I)
+        if match:
+            birth_date = datetime.date(int(match.group(1)), 1, 1)
 
     # 3 Jul, 2017
     if not birth_date:
@@ -286,10 +296,21 @@ def get_birth_death_date(text):
             if match:
                 death_date = datetime.date(int(match.group(1)), 1, 1)
 
+    # death_date = xxx年yyy月zzz日
     if not death_date:
         match = re.search(r'death_date\s*=\s*(\d+)年(\d+)月(\d+)日', text, flags=re.I)
         if match:
             death_date = datetime.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+    # death_date = xxx年yyy月
+    if not death_date:
+        match = re.search(r'death_date\s*=\s*(\d+)年(\d+)月', text, flags=re.I)
+        if match:
+            death_date = datetime.date(int(match.group(1)), int(match.group(2)), 1)
+    # death_date = xxx年
+    if not death_date:
+        match = re.search(r'death_date\s*=\s*(\d+)年', text, flags=re.I)
+        if match:
+            death_date = datetime.date(int(match.group(1)), 1, 1)
 
     # 2 Feb, 1900
     if not death_date:
